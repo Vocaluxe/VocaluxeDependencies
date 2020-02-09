@@ -18,5 +18,5 @@ jobs:
         nuget-api-key: ${{ secrets.NugetApiKey }}
         nuget-version: '5.x'
     - name: Publish nuget
-      run: nuget push .\\nuget\\*.nupkg --Source "https://api.nuget.org/v3/index.json" --SkipDuplicate --NoSymbols
+      run: nuget push .\\nuget\\*.nupkg -Source "https://api.nuget.org/v3/index.json" -SkipDuplicate -NoSymbols
       shell: bash
