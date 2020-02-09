@@ -1,0 +1,22 @@
+name: Publish NuGet
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: windows-latest
+   
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v1
+    - name: Install nuget
+      uses: nuget/setup-nuget@v1
+      with:
+        nuget-api-key: ${{ secrets.NugetApiKey }}
+        nuget-version: '5.x'
+    - name: Publish nuget
+      run: nuget push .\\nuget\\*.nupkg -Source "https://api.nuget.org/v3/index.json" -SkipDuplicate -NoSymbols
+      shell: bash
