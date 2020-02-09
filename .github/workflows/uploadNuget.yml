@@ -7,15 +7,16 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
    
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v1   
+      uses: actions/checkout@v1
+    - name: Install nuget
+      uses: nuget/setup-nuget@v1
+      with:
+        nuget-api-key: ${{ secrets.NugetApiKey }}
+        nuget-version: '5.x'
     - name: Publish nuget
-      run: |
-           for f in ./VocaluxeDependencies/nuget/*.nupkg
-           do
-             curl -vX PUT -u "Vocaluxe.org:${{ secrets.NugetApiKey }}" -F package=@$f https://nuget.pkg.github.com/Vocaluxe.org/
-           done
+      run: nuget push .\VocaluxeDependencies\nuget\*.nupkg -Source "https://api.nuget.org/v3/index.json" -SkipDuplicate
       shell: bash
