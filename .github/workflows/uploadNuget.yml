@@ -1,0 +1,21 @@
+name: Publish NuGet
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+   
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v1   
+    - name: Publish nuget
+      run: |
+           for f in ./VocaluxeDependencies/nuget/*.nupkg
+           do
+             curl -vX PUT -u "Vocaluxe.org:${{ secrets.NugetApiKey }}" -F package=@$f https://nuget.pkg.github.com/Vocaluxe.org/
+           done
+      shell: bash
