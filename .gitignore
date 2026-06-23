@@ -1,0 +1,4 @@
+bin/
+obj/
+projects/ffmpeg/x64/
+projects/ffmpeg/x86/

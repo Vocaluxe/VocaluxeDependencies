@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<IsPackable>true</IsPackable>
+		<VocaluxeDependencyName>opentk</VocaluxeDependencyName>
+		<PackageId>vocaluxe.dependencies.$(VocaluxeDependencyName)</PackageId>
+		<Authors>lukeIam</Authors>
+        <PackageProjectUrl>https://www.vocaluxe.org/</PackageProjectUrl>
+        <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+        <Description>Provide OpenTK binaries for Vocaluxe</Description>
+		<PackageOutputPath>../../nuget</PackageOutputPath>
+		<NoWarn>NU5100;NU5128</NoWarn>
+		<EnableSourceControlManagerQueries>false</EnableSourceControlManagerQueries>
+		<IncludeBuildOutput>false</IncludeBuildOutput>
+		<Version>1.0.1</Version>
+	</PropertyGroup>
+	
+	<ItemGroup>
+		<None Include="build\vocaluxe.dependencies.opentk.targets" PackagePath="build" Pack="true" />
+		<None Include="libs\**\*.*" PackagePath="libs" Pack="true" />
+	</ItemGroup>
+</Project>

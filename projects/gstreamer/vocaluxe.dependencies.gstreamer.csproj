@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<IsPackable>true</IsPackable>
+		<VocaluxeDependencyName>gstreamer</VocaluxeDependencyName>
+		<PackageId>vocaluxe.dependencies.$(VocaluxeDependencyName)</PackageId>
+		<Authors>lukeIam</Authors>
+        <PackageProjectUrl>https://www.vocaluxe.org/</PackageProjectUrl>
+        <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+        <Description>Provide OpenTK binaries for Vocaluxe</Description>
+		<PackageOutputPath>../../nuget</PackageOutputPath>
+		<NoWarn>NU5100;NU5128</NoWarn>
+		<EnableSourceControlManagerQueries>false</EnableSourceControlManagerQueries>
+		<IncludeBuildOutput>false</IncludeBuildOutput>
+		<Version>1.0.3</Version>
+	</PropertyGroup>
+	
+	<ItemGroup>
+		<None Include="build\vocaluxe.dependencies.gstreamer.targets" PackagePath="build" Pack="true" />
+		<None Include="tools\**\*.*" PackagePath="tools" Pack="true" />
+	</ItemGroup>
+</Project>

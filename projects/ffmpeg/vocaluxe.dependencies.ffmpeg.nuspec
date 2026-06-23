@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>vocaluxe.dependencies.ffmpeg</id>
+    <version>1.0.6</version>
+    <title>Vocaluxe dependency: FFmpeg</title>
+    <authors>lukeIam</authors>
+    <owners>lukeIam</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <projectUrl>http://ffmpeg.zeranoe.com/</projectUrl>
+    <description>http://ffmpeg.zeranoe.com/builds/</description>
+    <summary></summary>
+    <copyright></copyright>
+  </metadata>
+</package>
