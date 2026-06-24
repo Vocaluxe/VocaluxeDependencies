@@ -11,11 +11,14 @@
 		<PackageOutputPath>../../nuget</PackageOutputPath>
 		<EnableSourceControlManagerQueries>false</EnableSourceControlManagerQueries>
 		<IncludeBuildOutput>false</IncludeBuildOutput>
+		<NoWarn>NU5100;NU5128</NoWarn>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<Version>1.0.1</Version>
 	</PropertyGroup>
 	
 	<ItemGroup>
-		<None Include="build\vocaluxe.dependencies.slimdx.targets" PackagePath="build" Pack="true" />
+		<None Include="README.md" PackagePath="" Pack="true" />
+		<None Include="build\$(PackageId).targets" PackagePath="build" Pack="true" />
 		<None Include="x86\*.dll" PackagePath="x86" Pack="true" />
 		<None Include="x64\*.dll" PackagePath="x64" Pack="true" />
 	</ItemGroup>

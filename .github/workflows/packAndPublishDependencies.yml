@@ -1,0 +1,76 @@
+name: Pack & Publish modified dependencies
+
+# There is something to do only when a nupkg is pushed or a csproj is touched
+on:
+  pull_request:
+    types: 
+      - opened
+      - synchronize
+      - reopened
+    branches:
+      - master
+    paths:
+      - '**.csproj'
+      - '**.nupkg'
+    
+  push:
+    branches:
+      - master
+    paths:
+      - '**.csproj'
+      - '**.nupkg'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+   
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v1
+      with:
+          fetch-depth: 2
+    
+    - name: Setup dotnet
+      uses: actions/setup-dotnet@v5
+      with:
+        dotnet-version: 10.0
+          
+    - name: Get changed files
+      id: changed-files
+      uses: tj-actions/changed-files@v47.0.6
+    
+    # Run a dotnet pack on each projects/**/*.csproj modified files
+    # Then finally if it was modified pack vocalux.dependencies.csproj
+    - name: Packing modified dependencies
+      env:
+        ALL_CHANGED_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
+      run: |
+        dependencies_proj="projects/dependencies/vocaluxe.dependencies.csproj"
+        dependency_proj_regex="^projects/.*\.csproj"
+        need_dependencies_build=false
+        for file in ${ALL_CHANGED_FILES}; do
+          if [[ $file =~ $dependency_proj_regex ]]; then
+            if [[ $file = $dependencies_proj ]]; then
+                need_dependencies_build=true
+            else
+                echo "Packing $file"
+                dotnet restore "$file" --configfile "projects/nuget.config" --no-cache
+                dotnet pack --configuration Release --no-restore "$file"
+            fi
+          fi
+        done
+        if $need_dependencies_build; then
+            echo "Packing build dependencies $dependencies_proj"
+            dotnet restore "$dependencies_proj" --configfile "projects/nuget.config" --no-cache
+            dotnet pack --configuration Release --no-restore "$dependencies_proj"
+        fi
+    
+    # In the case we are on a push event (force-push or PR merge) then we can deploy the packed NuGet
+    # However in a PR case we just want to validate that the pack didn't encounter an error without pushing to NuGet
+    - name: Publish NuGets
+      if: ${{ github.event_name == 'push' }}
+      run: |
+        for nuget in nuget/*.nupkg; do
+          echo "Pushing NuGet $nuget"
+          dotnet nuget push "$nuget" -k "${{ secrets.NugetApiKey }}" -s "https://api.nuget.org/v3/index.json" --skip-duplicate
+        done

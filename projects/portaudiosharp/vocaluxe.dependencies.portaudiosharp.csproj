@@ -11,11 +11,14 @@
 		<PackageOutputPath>../../nuget</PackageOutputPath>
 		<EnableSourceControlManagerQueries>false</EnableSourceControlManagerQueries>
 		<IncludeBuildOutput>false</IncludeBuildOutput>
+		<NoWarn>NU5100;NU5128</NoWarn>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<Version>1.0.3</Version>
 	</PropertyGroup>
 	
 	<ItemGroup>
-		<None Include="build\vocaluxe.dependencies.portaudiosharp.targets" PackagePath="build" Pack="true" />
+		<None Include="README.md" PackagePath="" Pack="true" />
+		<None Include="build\$(PackageId).targets" PackagePath="build" Pack="true" />
 		<None Include="libs\**\*.*" PackagePath="libs" Pack="true" />
 		<None Include="x86\*.*" PackagePath="x86" Pack="true" />
 		<None Include="x64\*.*" PackagePath="x64" Pack="true" />

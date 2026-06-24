@@ -7,15 +7,18 @@
 		<Authors>lukeIam</Authors>
         <PackageProjectUrl>https://www.vocaluxe.org/</PackageProjectUrl>
         <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-        <Description>Provide SQLite binaries for Vocaluxe</Description>
+        <Description>Provide SQLite &amp; Mono.SQLite binaries for Vocaluxe</Description>
 		<PackageOutputPath>../../nuget</PackageOutputPath>
 		<EnableSourceControlManagerQueries>false</EnableSourceControlManagerQueries>
 		<IncludeBuildOutput>false</IncludeBuildOutput>
+		<NoWarn>NU5100;NU5128</NoWarn>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<Version>1.0.1</Version>
 	</PropertyGroup>
 	
 	<ItemGroup>
-		<None Include="build\vocaluxe.dependencies.sqlite.targets" PackagePath="build" Pack="true" />
+		<None Include="README.md" PackagePath="" Pack="true" />
+		<None Include="build\$(PackageId).targets" PackagePath="build" Pack="true" />
 		<None Include="libs\**\*.*" PackagePath="libs" Pack="true" />
 	</ItemGroup>
 </Project>

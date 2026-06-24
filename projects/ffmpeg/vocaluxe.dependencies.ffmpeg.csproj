@@ -12,12 +12,66 @@
 		<NoWarn>NU5100;NU5128</NoWarn>
 		<EnableSourceControlManagerQueries>false</EnableSourceControlManagerQueries>
 		<IncludeBuildOutput>false</IncludeBuildOutput>
-		<Version>1.0.6</Version>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<Version>1.1.0</Version>
 	</PropertyGroup>
 	
 	<ItemGroup>
-		<None Include="build\vocaluxe.dependencies.ffmpeg.targets" PackagePath="build" Pack="true" />
-		<None Include="x86\*.dll" PackagePath="x86" Pack="true" />
-		<None Include="x64\*.dll" PackagePath="x64" Pack="true" />
+		<None Include="README.md" PackagePath="" Pack="true" />
+		<None Include="build\$(PackageId).targets" PackagePath="build" Pack="true" />
+		<None Include="x86\**\*.dll" PackagePath="x86" Pack="true" />
+		<None Include="x64\**\*.dll" PackagePath="x64" Pack="true" />
 	</ItemGroup>
+	
+	<!-- Here an helper invokable with `dotnet build -t:UpdateFFmpegBinaries` to update FFmpeg binaries -->
+	<PropertyGroup>
+		<!-- HERE ARE FLAGS TO UPDATE -->
+		<FFmpegVersion>8.1.2</FFmpegVersion>
+		<!-- To get from https://github.com/defisym/FFmpeg-Builds-Win32/releases must be from an official FFmpeg release tag -->
+		<Win32FFmpegReleaseTag>autobuild-2026-06-17-15-27</Win32FFmpegReleaseTag>
+		<!-- To get from https://github.com/BtbN/FFmpeg-Builds/releases must be from an official FFmpeg release tag -->
+		<Win64FFmpegReleaseTag>autobuild-2026-06-17-14-17</Win64FFmpegReleaseTag>
+	</PropertyGroup>
+	
+	<Target Name="UpdateFFmpegBinaries">
+		<PropertyGroup>
+			<FFmpegWin32Uri>https://github.com/defisym/FFmpeg-Builds-Win32/releases/download/$(Win32FFmpegReleaseTag)/ffmpeg-n$(FFmpegVersion)-win32-lgpl-shared-$(FFmpegVersion.Substring(0, 3)).zip</FFmpegWin32Uri>
+			<FFmpegWin64Uri>https://github.com/BtbN/FFmpeg-Builds/releases/download/$(Win64FFmpegReleaseTag)/ffmpeg-n$(FFmpegVersion)-win64-lgpl-shared-$(FFmpegVersion.Substring(0, 3)).zip</FFmpegWin64Uri>
+		</PropertyGroup>
+		
+		<MSBuild Projects="$(MSBuildProjectFullPath)"
+			Properties="ZipUri=$(FFmpegWin32Uri);Arch=x86"
+			Targets="DownloadAndExtractFFmpegBinaries" />
+			
+		<MSBuild Projects="$(MSBuildProjectFullPath)"
+			Properties="ZipUri=$(FFmpegWin64Uri);Arch=x64"
+			Targets="DownloadAndExtractFFmpegBinaries" />
+    </Target>
+	
+	<Target Name="DownloadAndExtractFFmpegBinaries">
+		<PropertyGroup>
+			<ZipName>ffmpeg-$(Arch).zip</ZipName>
+			<FFmpegFolder>$(MSBuildThisFileDirectory)\$(Arch)\ffmpeg</FFmpegFolder>
+		</PropertyGroup>
+		
+        <RemoveDir Directories="$(FFmpegFolder)" />
+		
+		<DownloadFile
+			SourceUrl="$(ZipUri)"
+			DestinationFolder="$(FFmpegFolder)"
+			DestinationFileName="$(ZipName)" />
+		<Unzip
+			SourceFiles="$(FFmpegFolder)\$(ZipName)"
+			DestinationFolder="$(FFmpegFolder)\unzipped" />
+			
+		<ItemGroup>
+			<BinariesFiles Include="$(FFmpegFolder)\unzipped\**\bin\*.dll" />    
+		</ItemGroup>
+		
+		<Move SourceFiles="@(BinariesFiles)" 
+        DestinationFiles="@(BinariesFiles->'$(FFmpegFolder)\%(Filename)%(Extension)')" />
+		
+        <RemoveDir Directories="$(FFmpegFolder)\unzipped" />
+		<Delete Files="$(FFmpegFolder)\$(ZipName)" />
+	</Target>
 </Project>
