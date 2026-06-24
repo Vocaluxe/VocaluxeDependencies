@@ -9,9 +9,9 @@
         <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
         <Description>Provide CSharp.SQLite binaries for Vocaluxe</Description>
 		<PackageOutputPath>../../nuget</PackageOutputPath>
-		<NoWarn>NU5100;NU5128</NoWarn>
 		<EnableSourceControlManagerQueries>false</EnableSourceControlManagerQueries>
 		<IncludeBuildOutput>false</IncludeBuildOutput>
+		<NoWarn>NU5100;NU5128</NoWarn>
 		<Version>1.0.1</Version>
 	</PropertyGroup>
 	

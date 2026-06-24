@@ -9,7 +9,6 @@
         <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
         <Description>Provide gstreamer-sharp binaries for Vocaluxe</Description>
 		<PackageOutputPath>../../nuget</PackageOutputPath>
-		<NoWarn>NU5100;NU5128</NoWarn>
 		<EnableSourceControlManagerQueries>false</EnableSourceControlManagerQueries>
 		<IncludeBuildOutput>false</IncludeBuildOutput>
 		<Version>1.0.1</Version>
