@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<IsPackable>true</IsPackable>
+		<VocaluxeDependencyName>portaudiosharp</VocaluxeDependencyName>
+		<PackageId>vocaluxe.dependencies.$(VocaluxeDependencyName)</PackageId>
+		<Authors>lukeIam</Authors>
+        <PackageProjectUrl>https://www.vocaluxe.org/</PackageProjectUrl>
+        <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+        <Description>Provide PortAudioSharp binaries for Vocaluxe</Description>
+		<PackageOutputPath>../../nuget</PackageOutputPath>
+		<EnableSourceControlManagerQueries>false</EnableSourceControlManagerQueries>
+		<IncludeBuildOutput>false</IncludeBuildOutput>
+		<Version>1.0.3</Version>
+	</PropertyGroup>
+	
+	<ItemGroup>
+		<None Include="build\vocaluxe.dependencies.portaudiosharp.targets" PackagePath="build" Pack="true" />
+		<None Include="libs\**\*.*" PackagePath="libs" Pack="true" />
+		<None Include="x86\*.*" PackagePath="x86" Pack="true" />
+		<None Include="x64\*.*" PackagePath="x64" Pack="true" />
+	</ItemGroup>
+</Project>

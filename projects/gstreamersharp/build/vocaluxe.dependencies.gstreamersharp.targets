@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Target Name="gstreamersharpBeforeBuild" BeforeTargets="BeforeBuild">
+    <Message Text="x86 target detected" Importance="normal" Condition="'$(Platform)'=='x86'"/>
+    <Message Text="x64 target detected" Importance="normal" Condition="'$(Platform)'=='x64'"/>
+
+
+    <ItemGroup>
+      <FilesToCopy Include="$(MSBuildThisFileDirectory)..\x86\**\*.*" Condition="'$(Platform)'=='x86'"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <FilesToCopy Include="$(MSBuildThisFileDirectory)..\x64\**\*.*" Condition="'$(Platform)'=='x64'"/>
+    </ItemGroup>
+
+    <Copy
+        SourceFiles="@(FilesToCopy)"
+        DestinationFiles="@(FilesToCopy->'$(TargetDir)libs\unmanaged\%(RecursiveDir)%(Filename)%(Extension)')"
+	/>
+  </Target>
+  <ItemGroup>
+    <Reference Include="glib-sharp, Version=3.0.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(MSBuildThisFileDirectory)..\libs\net40\glib-sharp.dll</HintPath>
+    </Reference>
+    <Reference Include="gstreamer-sharp, Version=1.39.91.0, Culture=neutral, PublicKeyToken=5cbf79803e97ff61, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(MSBuildThisFileDirectory)..\libs\net40\gstreamer-sharp.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>

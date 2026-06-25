@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<IsPackable>true</IsPackable>
+		<VocaluxeDependencyName>sqlite</VocaluxeDependencyName>
+		<PackageId>vocaluxe.dependencies.$(VocaluxeDependencyName)</PackageId>
+		<Authors>lukeIam</Authors>
+        <PackageProjectUrl>https://www.vocaluxe.org/</PackageProjectUrl>
+        <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+        <Description>Provide SQLite binaries for Vocaluxe</Description>
+		<PackageOutputPath>../../nuget</PackageOutputPath>
+		<EnableSourceControlManagerQueries>false</EnableSourceControlManagerQueries>
+		<IncludeBuildOutput>false</IncludeBuildOutput>
+		<Version>1.0.1</Version>
+	</PropertyGroup>
+	
+	<ItemGroup>
+		<None Include="build\vocaluxe.dependencies.sqlite.targets" PackagePath="build" Pack="true" />
+		<None Include="libs\**\*.*" PackagePath="libs" Pack="true" />
+	</ItemGroup>
+</Project>
