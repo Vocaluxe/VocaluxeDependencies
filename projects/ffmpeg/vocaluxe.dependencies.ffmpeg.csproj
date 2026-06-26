@@ -74,4 +74,5 @@
         <RemoveDir Directories="$(FFmpegFolder)\unzipped" />
 		<Delete Files="$(FFmpegFolder)\$(ZipName)" />
 	</Target>
+	<!-- This comment is to enforce regeneration by GitHub workflow -->
 </Project>

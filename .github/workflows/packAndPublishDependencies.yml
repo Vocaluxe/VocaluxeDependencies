@@ -69,8 +69,10 @@ jobs:
     # However in a PR case we just want to validate that the pack didn't encounter an error without pushing to NuGet
     - name: Publish NuGets
       if: ${{ github.event_name == 'push' }}
+      env:
+        NUGET_API_KEY: ${{ secrets.NugetApiKey }}
       run: |
         for nuget in nuget/*.nupkg; do
           echo "Pushing NuGet $nuget"
-          dotnet nuget push "$nuget" -k "${{ secrets.NugetApiKey }}" -s "https://api.nuget.org/v3/index.json" --skip-duplicate
+          dotnet nuget push "$nuget" -k "$NUGET_API_KEY" -s "https://api.nuget.org/v3/index.json" --skip-duplicate
         done
