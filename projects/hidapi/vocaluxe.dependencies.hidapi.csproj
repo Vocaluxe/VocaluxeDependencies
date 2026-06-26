@@ -7,15 +7,18 @@
 		<Authors>lukeIam</Authors>
         <PackageProjectUrl>https://www.vocaluxe.org/</PackageProjectUrl>
         <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-        <Description>Provide HID API binaries for Vocaluxe</Description>
+        <Description>Provide hidapi binaries for Vocaluxe</Description>
 		<PackageOutputPath>../../nuget</PackageOutputPath>
 		<EnableSourceControlManagerQueries>false</EnableSourceControlManagerQueries>
 		<IncludeBuildOutput>false</IncludeBuildOutput>
+		<NoWarn>NU5100;NU5128</NoWarn>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<Version>1.0.4</Version>
 	</PropertyGroup>
 	
 	<ItemGroup>
-		<None Include="build\vocaluxe.dependencies.hidapi.targets" PackagePath="build" Pack="true" />
+		<None Include="README.md" PackagePath="" Pack="true" />
+		<None Include="build\$(PackageId).targets" PackagePath="build" Pack="true" />
 		<None Include="x86\*.dll" PackagePath="x86" Pack="true" />
 		<None Include="x64\*.dll" PackagePath="x64" Pack="true" />
 	</ItemGroup>

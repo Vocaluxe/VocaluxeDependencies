@@ -6,19 +6,24 @@
 		<Authors>lukeIam</Authors>
         <PackageProjectUrl>https://www.vocaluxe.org/</PackageProjectUrl>
         <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-        <Description>All dependencies for building Vocaluxe</Description>
+        <Description>All dependencies needed to build Vocaluxe</Description>
 		<PackageOutputPath>../../nuget</PackageOutputPath>
 		<NoWarn>MSB3245;NU5128</NoWarn>
 		<EnableSourceControlManagerQueries>false</EnableSourceControlManagerQueries>
 		<IncludeBuildOutput>false</IncludeBuildOutput>
-		<Version>1.0.12</Version>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<Version>1.1.0</Version>
 	</PropertyGroup>
+	
+	<ItemGroup>
+		<None Include="README.md" PackagePath="" Pack="true" />
+	</ItemGroup>
 	
 	<ItemGroup>
 		<PackageReference Include="vocaluxe.dependencies.acinerella" Version="1.0.6" />
 		<PackageReference Include="vocaluxe.dependencies.aforgevideo" Version="1.0.1" />
 		<PackageReference Include="vocaluxe.dependencies.csharpsqlite" Version="1.0.1" />
-		<PackageReference Include="vocaluxe.dependencies.ffmpeg" Version="1.0.6" />
+		<PackageReference Include="vocaluxe.dependencies.ffmpeg" Version="1.1.0" />
 		<PackageReference Include="vocaluxe.dependencies.gstreamersharp" Version="1.0.1" />
 		<PackageReference Include="vocaluxe.dependencies.hidapi" Version="1.0.4" />
 		<PackageReference Include="vocaluxe.dependencies.opentk" Version="1.0.1" />
@@ -26,6 +31,6 @@
 		<PackageReference Include="vocaluxe.dependencies.qrcoder" Version="1.0.1" />
 		<PackageReference Include="vocaluxe.dependencies.slimdx" Version="1.0.1" />
 		<PackageReference Include="vocaluxe.dependencies.sqlite" Version="1.0.1" />
-		<PackageReference Include="vocaluxe.dependencies.gstreamer" Version="1.0.2" />
+		<PackageReference Include="vocaluxe.dependencies.gstreamer" Version="1.1.0" />
 	</ItemGroup>
 </Project>

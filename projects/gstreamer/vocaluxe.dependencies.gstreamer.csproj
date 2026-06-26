@@ -7,15 +7,17 @@
 		<Authors>lukeIam</Authors>
         <PackageProjectUrl>https://www.vocaluxe.org/</PackageProjectUrl>
         <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-        <Description>Provide OpenTK binaries for Vocaluxe</Description>
+        <Description>Provide GStreamer binaries for Vocaluxe</Description>
 		<PackageOutputPath>../../nuget</PackageOutputPath>
 		<EnableSourceControlManagerQueries>false</EnableSourceControlManagerQueries>
 		<IncludeBuildOutput>false</IncludeBuildOutput>
-		<Version>1.0.3</Version>
+		<NoWarn>NU5128</NoWarn>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<Version>1.1.0</Version>
 	</PropertyGroup>
 	
 	<ItemGroup>
-		<None Include="build\vocaluxe.dependencies.gstreamer.targets" PackagePath="build" Pack="true" />
-		<None Include="tools\**\*.*" PackagePath="tools" Pack="true" />
+		<None Include="README.md" PackagePath="" Pack="true" />
+		<None Include="build\$(PackageId).targets" PackagePath="build" Pack="true" />
 	</ItemGroup>
 </Project>
