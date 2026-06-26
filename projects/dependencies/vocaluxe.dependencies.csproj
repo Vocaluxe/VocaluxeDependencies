@@ -33,4 +33,5 @@
 		<PackageReference Include="vocaluxe.dependencies.sqlite" Version="1.0.1" />
 		<PackageReference Include="vocaluxe.dependencies.gstreamer" Version="1.1.0" />
 	</ItemGroup>
+	<!-- This comment is to enforce regeneration by GitHub workflow -->
 </Project>

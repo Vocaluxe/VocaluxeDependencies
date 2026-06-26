@@ -20,4 +20,5 @@
 		<None Include="README.md" PackagePath="" Pack="true" />
 		<None Include="build\$(PackageId).targets" PackagePath="build" Pack="true" />
 	</ItemGroup>
+	<!-- This comment is to enforce regeneration by GitHub workflow -->
 </Project>
