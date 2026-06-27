@@ -4,7 +4,10 @@
 		<IsPackable>true</IsPackable>
 		<VocaluxeDependencyName>gstreamer</VocaluxeDependencyName>
 		<PackageId>vocaluxe.dependencies.$(VocaluxeDependencyName)</PackageId>
-		<Authors>lukeIam</Authors>
+		<Authors>
+		<RepositoryURL>https://github.com/Vocaluxe/Vocaluxe</RepositoryURL>lukeIam</Authors>
+		<RepositoryURL>https://github.com/Vocaluxe/Vocaluxe</RepositoryURL>
+		<RepositoryURL>https://github.com/Vocaluxe/Vocaluxe</RepositoryURL>
         <PackageProjectUrl>https://www.vocaluxe.org/</PackageProjectUrl>
         <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
         <Description>Provide GStreamer binaries for Vocaluxe</Description>

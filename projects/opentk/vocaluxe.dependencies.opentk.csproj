@@ -5,6 +5,7 @@
 		<VocaluxeDependencyName>opentk</VocaluxeDependencyName>
 		<PackageId>vocaluxe.dependencies.$(VocaluxeDependencyName)</PackageId>
 		<Authors>lukeIam</Authors>
+		<RepositoryURL>https://github.com/Vocaluxe/Vocaluxe</RepositoryURL>
         <PackageProjectUrl>https://www.vocaluxe.org/</PackageProjectUrl>
         <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
         <Description>Provide OpenTK binaries for Vocaluxe</Description>
