@@ -72,7 +72,5 @@ jobs:
       env:
         NUGET_API_KEY: ${{ secrets.NugetApiKey }}
       run: |
-        for nuget in nuget/*.nupkg; do
-          echo "Pushing NuGet $nuget"
-          dotnet nuget push "$nuget" -k "$NUGET_API_KEY" -s "https://api.nuget.org/v3/index.json" --skip-duplicate
-        done
+        dotnet nuget add source --username vocaluxe --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name vocaluxe-github https://nuget.pkg.github.com/Vocaluxe/index.json
+        dotnet nuget push "nuget/*.nupkg" --source https://nuget.pkg.github.com/Vocaluxe/index.json --skip-duplicate
