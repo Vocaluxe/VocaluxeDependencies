@@ -3,9 +3,7 @@
 		<TargetFramework>netstandard2.0</TargetFramework>
 		<IsPackable>true</IsPackable>
 		<PackageId>vocaluxe.dependencies</PackageId>
-		<Authors>
-		<RepositoryURL>https://github.com/Vocaluxe/Vocaluxe</RepositoryURL>lukeIam</Authors>
-		<RepositoryURL>https://github.com/Vocaluxe/Vocaluxe</RepositoryURL>
+		<Authors>lukeIam</Authors>
 		<RepositoryURL>https://github.com/Vocaluxe/Vocaluxe</RepositoryURL>
         <PackageProjectUrl>https://www.vocaluxe.org/</PackageProjectUrl>
         <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
