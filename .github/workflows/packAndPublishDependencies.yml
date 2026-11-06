@@ -20,13 +20,18 @@ on:
       - '**.csproj'
       - '**.nupkg'
 
+permissions:
+  contents: read
+  packages: write
+
 jobs:
   build:
+    if: github.repository == 'Vocaluxe/VocaluxeDependencies'
     runs-on: ubuntu-latest
    
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v1
+      uses: actions/checkout@v4
       with:
           fetch-depth: 2
     
@@ -70,9 +75,6 @@ jobs:
     - name: Publish NuGets
       if: ${{ github.event_name == 'push' }}
       env:
-        NUGET_API_KEY: ${{ secrets.NugetApiKey }}
+        GIT_NUGET_API_KEY: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        for nuget in nuget/*.nupkg; do
-          echo "Pushing NuGet $nuget"
-          dotnet nuget push "$nuget" -k "$NUGET_API_KEY" -s "https://api.nuget.org/v3/index.json" --skip-duplicate
-        done
+        dotnet nuget push "nuget/*.nupkg" --source https://nuget.pkg.github.com/Vocaluxe/index.json --api-key $GIT_NUGET_API_KEY

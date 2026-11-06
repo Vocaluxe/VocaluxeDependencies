@@ -4,6 +4,7 @@
 		<IsPackable>true</IsPackable>
 		<PackageId>vocaluxe.dependencies</PackageId>
 		<Authors>lukeIam</Authors>
+		<RepositoryURL>https://github.com/Vocaluxe/Vocaluxe</RepositoryURL>
         <PackageProjectUrl>https://www.vocaluxe.org/</PackageProjectUrl>
         <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
         <Description>All dependencies needed to build Vocaluxe</Description>
